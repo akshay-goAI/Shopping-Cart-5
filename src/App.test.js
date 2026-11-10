@@ -58,3 +58,12 @@ test('proceeds to checkout', () => {
   checkoutButton.click();
   expect(window.alert).toHaveBeenCalledWith('Proceeding to checkout...');
 });
+
+test('validates checkout functionality', () => {
+  render(<App />);
+  const addButton = screen.getByText(/Add to Cart/i);
+  addButton.click();
+  const checkoutButton = screen.getByText(/Checkout/i);
+  checkoutButton.click();
+  expect(window.alert).toHaveBeenCalledWith('Proceeding to checkout...');
+});
