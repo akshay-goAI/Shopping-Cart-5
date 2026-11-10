@@ -14,3 +14,12 @@ test('adds item to cart', () => {
   const itemElement = screen.getByText(/Sample Item/i);
   expect(itemElement).toBeInTheDocument();
 });
+
+test('views cart', () => {
+  render(<App />);
+  const addButton = screen.getByText(/Add to Cart/i);
+  addButton.click();
+  const viewButton = screen.getByText(/View Cart/i);
+  viewButton.click();
+  expect(window.alert).toHaveBeenCalledWith('Items in cart: Sample Item');
+});
