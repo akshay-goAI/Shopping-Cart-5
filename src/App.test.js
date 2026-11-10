@@ -37,3 +37,13 @@ test('views cart', () => {
   viewButton.click();
   expect(window.alert).toHaveBeenCalledWith('Items in cart: Sample Item');
 });
+
+test('validates view cart functionality', () => {
+  render(<App />);
+  const addButton = screen.getByText(/Add to Cart/i);
+  addButton.click();
+  const viewButton = screen.getByText(/View Cart/i);
+  viewButton.click();
+  expect(window.alert).toHaveBeenCalledWith('Items in cart: Sample Item');
+  expect(window.alert).toHaveBeenCalledTimes(2);
+});
