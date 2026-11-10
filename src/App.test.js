@@ -77,3 +77,10 @@ test('validates remove item functionality', () => {
   expect(window.alert).toHaveBeenCalledWith('Sample Item removed from cart!');
   expect(screen.queryByText(/Sample Item/i)).toBeNull();
 });
+
+test('validates add item functionality', () => {
+  render(<App />);
+  const addButton = screen.getByText(/Add to Cart/i);
+  addButton.click();
+  expect(window.alert).toHaveBeenCalledWith('Sample Item added to cart!');
+});
