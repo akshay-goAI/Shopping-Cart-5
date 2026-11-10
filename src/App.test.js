@@ -67,3 +67,13 @@ test('validates checkout functionality', () => {
   checkoutButton.click();
   expect(window.alert).toHaveBeenCalledWith('Proceeding to checkout...');
 });
+
+test('validates remove item functionality', () => {
+  render(<App />);
+  const addButton = screen.getByText(/Add to Cart/i);
+  addButton.click();
+  const removeButton = screen.getByText(/Remove from Cart/i);
+  removeButton.click();
+  expect(window.alert).toHaveBeenCalledWith('Sample Item removed from cart!');
+  expect(screen.queryByText(/Sample Item/i)).toBeNull();
+});
