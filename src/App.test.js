@@ -47,3 +47,14 @@ test('validates view cart functionality', () => {
   expect(window.alert).toHaveBeenCalledWith('Items in cart: Sample Item');
   expect(window.alert).toHaveBeenCalledTimes(2);
 });
+
+test('proceeds to checkout', () => {
+  render(<App />);
+  const checkoutButton = screen.getByText(/Checkout/i);
+  checkoutButton.click();
+  expect(window.alert).toHaveBeenCalledWith('Your cart is empty!');
+  const addButton = screen.getByText(/Add to Cart/i);
+  addButton.click();
+  checkoutButton.click();
+  expect(window.alert).toHaveBeenCalledWith('Proceeding to checkout...');
+});
