@@ -1,6 +1,10 @@
 import { render, screen } from '@testing-library/react';
 import App from './App';
 
+beforeEach(() => {
+  window.alert = jest.fn();
+});
+
 test('renders Shopping Cart title', () => {
   render(<App />);
   const linkElement = screen.getByText(/Shopping Cart/i);
@@ -13,6 +17,16 @@ test('adds item to cart', () => {
   buttonElement.click();
   const itemElement = screen.getByText(/Sample Item/i);
   expect(itemElement).toBeInTheDocument();
+});
+
+test('removes item from cart', () => {
+  render(<App />);
+  const addButton = screen.getByText(/Add to Cart/i);
+  addButton.click();
+  const removeButton = screen.getByText(/Remove from Cart/i);
+  removeButton.click();
+  expect(window.alert).toHaveBeenCalledWith('Sample Item removed from cart!');
+  expect(screen.queryByText(/Sample Item/i)).toBeNull();
 });
 
 test('views cart', () => {
