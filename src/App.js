@@ -8,6 +8,11 @@ function App() {
     alert(`${item} added to cart!`);
   };
 
+  const removeItemFromCart = (item) => {
+    setCart(cart.filter(cartItem => cartItem !== item));
+    alert(`${item} removed from cart!`);
+  };
+
   const viewCart = () => {
     alert(`Items in cart: ${cart.join(', ')}`);
   };
@@ -16,6 +21,7 @@ function App() {
     <div>
       <h1>Shopping Cart</h1>
       <button onClick={() => addItemToCart('Sample Item')}>Add to Cart</button>
+      <button onClick={() => removeItemFromCart('Sample Item')}>Remove from Cart</button>
       <button onClick={viewCart}>View Cart</button>
       <h2>Cart Items:</h2>
       <ul>
